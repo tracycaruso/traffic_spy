@@ -1,0 +1,48 @@
+<h1><%= @source.identifier %></h1>
+
+<h2>Visited URLS</h2>
+<ul class="urls">
+  <% @source.ordered_urls.each do |url| %>
+  <li><%= url %></li>
+  <% end %>
+</ul>
+
+<h2>Average Reponse Times</h2>
+<ul class="average_urls">
+  <% @source.ordered_url_response_times.each do |url| %>
+  <li><%= url %></li>
+  <% end %>
+</ul>
+
+<h2>Browsers</h2>
+<ul class="browsers">
+  <% @source.browsers.each do |browser| %>
+  <li><%= browser %></li>
+  <% end %>
+</ul>
+
+
+<h2>Platforms</h2>
+<ul class="platforms">
+  <% @source.platforms.each do |platform| %>
+  <li><%= platform %></li>
+  <% end %>
+</ul>
+
+<h2>Resolutions</h2>
+<ul class="screen_resolutions">
+  <% @source.resolutions.each do |resolution| %>
+  <li><%= resolution %></li>
+  <% end %>
+</ul>
+
+
+<h2>URLs:</h2>
+<ul class="single_url">
+
+  <p>testing<p>
+<% @source.url_objects.each do |url| %>
+<li><a href="/sources/<%= @source.identifier %>/urls<%= url.relative_path %>"><%= url.name %></a></li>
+
+<% end %>
+</ul>
