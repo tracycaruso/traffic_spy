@@ -58,5 +58,9 @@ module TrafficSpy
     def events_per_hour(event)
       payloads.where(event_name_id: event.id).group_by { |pl| Time.parse(pl.requested_at).hour }
     end
+
+    def events_count(event)
+      payloads.where(event_name_id: event.id).count
+    end
   end
 end

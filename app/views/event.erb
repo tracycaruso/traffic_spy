@@ -8,4 +8,6 @@
   <li><%= event %></li>
   <% end %>
 </ul>
-<h1><%= @source.events_per_hour_count(@event) %></h1>
+<h1><%= @source.events_count(@event) %></h1>
+
+<h1><a href="/sources/<%= @source.identifier %>/events">Back to events page</a></h1>

@@ -10,8 +10,4 @@ class EventNameTest < Minitest::Test
     event = TrafficSpy::EventName.last
     assert_equal "submit", event.name
   end
-
-
-
-
 end

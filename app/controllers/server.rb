@@ -40,7 +40,6 @@ module TrafficSpy
     end
 
     get '/sources/:identifier/events' do |identifier|
-      # @event = Payload.find_by(identifier: identifier)
       @source = Source.find_by(identifier: identifier)
       if @source == nil
         erb :events_not_found
@@ -53,7 +52,11 @@ module TrafficSpy
 
       @source = Source.find_by(identifier: identifier)
       @event = EventName.find_by(name: name)
-      erb :event
+      if @event == nil
+        erb :events_not_found
+      else
+        erb :event
+      end
     end
 
     post '/sources/:identifier/data' do |identifier|
