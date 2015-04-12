@@ -47,15 +47,11 @@ module TrafficSpy
       end
     end
 
-    # get '/sources/:identifier/events' do |identifier|
-    #   # @events = Payload.pluck(identifier: identifier).events
-    #
-    #   if @event == nil
-    #     erb :no_event_error
-    #   else
-    #     erb :event_data
-    #   end
-    # end
+    get '/sources/:identifier/events' do |identifier|
+      # @event = Payload.find_by(identifier: identifier)
+      @source = Source.find_by(identifier: identifier)
+      erb :event_data
+    end
 
 
 

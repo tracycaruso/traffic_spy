@@ -276,4 +276,23 @@ class SourceTest < Minitest::Test
     assert_equal "/blog", source.url_objects[0].relative_path
 
   end
+
+  def test_it_can_return_events_for_source
+    source = CreateSourcesAndPayloads.create_source("jumpstartlab", "http://www.jumpstartlab.com")
+    CreateSourcesAndPayloads.create_payload("http://jumpstartlab.com/blog",
+                                            "2014-02-16 21:38:28 -0700",
+                                            37,
+                                            "http://jumpstartlab.com",
+                                            "GET",
+                                            [],
+                                            "socialLogin",
+                                            "Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
+                                            "1920",
+                                            "1280",
+                                            "63.29.38.211",
+                                            source)
+                                            
+       events = ["socialLogin"]
+       assert_equal events, source.ordered_events
+  end
 end

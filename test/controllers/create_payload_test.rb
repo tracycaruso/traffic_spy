@@ -2,7 +2,7 @@ require './test/test_helper'
 require 'byebug'
 
 class CreatePayloadTest < ControllerTest
-  def app 
+  def app
     TrafficSpy::Server
   end
 
@@ -27,7 +27,7 @@ class CreatePayloadTest < ControllerTest
     payload = TrafficSpy::Payload.first
     assert_equal 1, payload.url_id
     assert_equal 1, payload.source_id
-    assert_equal "socialLogin", payload.event_name
+    assert_equal "socialLogin", payload.event_name.name
   end
 
   def test_creates_data_when_there_are_two_sources
@@ -49,8 +49,8 @@ class CreatePayloadTest < ControllerTest
     payload = TrafficSpy::Payload.first
 
     assert_equal 1, payload.url_id
-    assert_equal 2, payload.source_id 
-    assert_equal "socialLogin", payload.event_name
+    assert_equal 2, payload.source_id
+    assert_equal "socialLogin", payload.event_name.name
   end
 
   def test_it_returns_200_when_OK
@@ -114,7 +114,7 @@ class CreatePayloadTest < ControllerTest
          "resolutionHeight":"1280",
          "ip":"63.29.38.211"}'
 
- 
+
     assert_equal 403, last_response.status
     assert_equal "Already Received Request", last_response.body
   end

@@ -26,7 +26,7 @@ module CreateSourcesAndPayloads
       referred_by: "#{referred_by}",
       request_type: "#{request_type}",
       parameters:[],
-      event_name: "#{event_name}",
+      event_name: TrafficSpy::EventName.find_or_create_by(name: "#{event_name}"),
       user_agent: TrafficSpy::UserAgent.find_or_create_by(browser: user_agent.browser, version: user_agent.version, platform: user_agent.platform),
       resolution_id: TrafficSpy::Resolution.find_or_create_by(dimension: "#{resolution_width}x#{resolution_height}").id,
       # resolution_width: "#{resolution_width}",

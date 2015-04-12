@@ -51,7 +51,7 @@ module TrafficSpy
             referred_by: payload_hash["referredBy"],
             request_type: payload_hash["requestType"],
             parameters: payload_hash["parameters"],
-            event_name: payload_hash["eventName"],
+            event_name: TrafficSpy::EventName.find_or_create_by(name: payload_hash["eventName"]),
             user_agent: TrafficSpy::UserAgent.find_or_create_by( browser: user_agent.browser, version: user_agent.version, platform: user_agent.platform ),
             resolution: TrafficSpy::Resolution.find_or_create_by( dimension: "#{payload_hash['resolutionWidth']}x#{payload_hash['resolutionHeight']}" ),
             ip: payload_hash["ip"],

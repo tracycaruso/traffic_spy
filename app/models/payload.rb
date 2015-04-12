@@ -4,6 +4,7 @@ module TrafficSpy
     belongs_to :url
     belongs_to :user_agent
     belongs_to :resolution
+    belongs_to :event_name
 
     validates :requested_at, presence: true
     validates :responded_in, presence: true
