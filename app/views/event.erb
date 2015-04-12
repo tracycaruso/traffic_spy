@@ -1,0 +1,11 @@
+<h1>I am an event specific page</h1>
+
+<h1><%= @source.identifier %></h1>
+
+<h2>Events Per Hour Count</h2>
+<ul class="events_per_hour">
+  <% @source.events_per_hour_count(@event).each do |event| %>
+  <li><%= event %></li>
+  <% end %>
+</ul>
+<h1><%= @source.events_per_hour_count(@event) %></h1>

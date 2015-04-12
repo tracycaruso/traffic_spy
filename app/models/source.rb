@@ -47,5 +47,16 @@ module TrafficSpy
       frequency = events.reduce(Hash.new(0)) { |h, v| h[v] += 1; h}
       events.uniq.sort_by {|v| frequency[v] }.reverse
     end
+
+    def events_per_hour_count(event)
+      sorted = events_per_hour(event).sort_by{|key, value| key}
+      sorted.flat_map do |event|
+        "Hour #{event[0]}: had #{event[1].count} event occurance(s)."
+      end
+    end
+
+    def events_per_hour(event)
+      payloads.where(event_name_id: event.id).group_by { |pl| Time.parse(pl.requested_at).hour }
+    end
   end
 end

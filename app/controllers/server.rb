@@ -29,15 +29,7 @@ module TrafficSpy
 
 
     get '/sources/:identifier/urls/:path' do |identifier, path|
-
-      @url = Url.find_by(name: "http://#{identifier}.com/#{path}")
-
-      # puts @url.inspect
-      # puts @url.name
-      # urls = Url.all
-      # urls.each {|url| puts url.name}
-      # puts "http://#{identifier}.com/#{path}"
-
+      @url = Url.find_by(relative_path: "/#{path}")
       @identifier = identifier
 
       if @url == nil
@@ -50,10 +42,19 @@ module TrafficSpy
     get '/sources/:identifier/events' do |identifier|
       # @event = Payload.find_by(identifier: identifier)
       @source = Source.find_by(identifier: identifier)
-      erb :event_data
+      if @source == nil
+        erb :events_not_found
+      else
+        erb :event_data
+      end
     end
 
+    get '/sources/:identifier/events/:name' do |identifier, name|
 
+      @source = Source.find_by(identifier: identifier)
+      @event = EventName.find_by(name: name)
+      erb :event
+    end
 
     post '/sources/:identifier/data' do |identifier|
       payload_helper = PayloadHelper.call(params, identifier)

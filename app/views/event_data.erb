@@ -1,1 +1,8 @@
 <h1>Event Data</h1>
+
+<h2>Ordered Events</h2>
+<ul class="events">
+  <% @source.ordered_events.each do |event| %>
+  <li><a href="/sources/<%= @source.identifier %>/events/<%= event %>"><%= event  %></a></li>
+  <% end %>
+</ul>

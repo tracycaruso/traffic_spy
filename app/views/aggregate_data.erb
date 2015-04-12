@@ -40,7 +40,6 @@
 <h2>URLs:</h2>
 <ul class="single_url">
 
-  <p>testing<p>
 <% @source.url_objects.each do |url| %>
 <li><a href="/sources/<%= @source.identifier %>/urls<%= url.relative_path %>"><%= url.name %></a></li>
 

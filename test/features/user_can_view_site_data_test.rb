@@ -77,10 +77,6 @@ class UserViewsSiteDataTest < FeatureTest
         assert page.has_content?("1280x720")
     }
 
-    within ('ul.urls li:nth-child(1)'){
-      #click_link_or_button("jumpstartlab.com/blog")
-      # assert_equal 'sources/jumpstartlab/urls/blog', current_path
-    }
 
     within('.single_url'){
       click_link_or_button("http://jumpstartlab.com/blog")}
