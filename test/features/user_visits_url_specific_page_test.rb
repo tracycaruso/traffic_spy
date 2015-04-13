@@ -52,4 +52,9 @@ class UserViewsUrlDataTest < FeatureTest
         assert page.has_content?("Chrome")
     }
   end
+
+  def test_user_views_error_page
+    visit '/sources/jumpstartlab/urls/peanuts'
+    assert page.has_content?("Message that the url has not been requested")
+  end
 end

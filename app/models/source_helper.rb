@@ -5,7 +5,7 @@ module TrafficSpy
     def self.call(params)
       source = Source.new(root_url: params["rootUrl"], identifier: params["identifier"])
       if Source.find_by(identifier: source.identifier)
-        @status = 403  
+        @status = 403
         @body = "Identifier already exists"
       elsif source.save
         @status = 200

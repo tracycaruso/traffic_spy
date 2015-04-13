@@ -1,6 +1,4 @@
 require './test/test_helper'
-
-# module TrafficSpy
   class UserAgentTest < Minitest::Test
 
     def test_user_agent_can_be_added_to_table
@@ -12,4 +10,3 @@ require './test/test_helper'
       assert_equal "Mac", user_agent.platform
     end
   end
-# end

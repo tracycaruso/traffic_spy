@@ -5,7 +5,6 @@ require 'uri'
 module TrafficSpy
   class PayloadHelper
     attr_accessor :status, :body
-
     def self.call(params, identifier)
       if params[:payload] == nil || params[:payload] == "{}"
           @status = 400
@@ -42,8 +41,6 @@ module TrafficSpy
 
     def self.add_payload(identifier, payload_hash)
       user_agent = ::UserAgent.parse(payload_hash["userAgent"])
-      # uri = URI(payload_hash["url"])
-      #  byebug
       Payload.new(
             url: Url.find_or_create_by(name: payload_hash["url"], relative_path: URI(payload_hash["url"]).path),
             requested_at: payload_hash["requestedAt"],

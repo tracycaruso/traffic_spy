@@ -35,4 +35,10 @@ class UserViewsEventDataTest < FeatureTest
       assert page.has_content?("2")
     }
   end
+
+  def test_user_views_error_page
+    visit '/sources/jumpstartlab/events/peanuts'
+    assert page.has_content?("Events not found")
+  end
+
 end

@@ -47,4 +47,9 @@ class UserViewsEventDataTest < FeatureTest
     assert_equal '/sources/jumpstartlab/events/delete', current_path
   end
 
+  def test_user_views_error_page
+    visit '/sources/peanuts/events'
+    assert page.has_content?("Events not found")
+  end
+
 end

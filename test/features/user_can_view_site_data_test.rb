@@ -66,5 +66,10 @@ class UserViewsSiteDataTest < FeatureTest
     }
   end
 
+  def test_user_views_error_page
+    visit '/sources/peanuts'
+    assert page.has_content?("The source you entered does not exist")
+  end
+
 
 end

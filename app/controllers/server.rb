@@ -29,8 +29,6 @@ module TrafficSpy
       end
     end
 
-
-
     get '/sources/:identifier/urls/:path' do |identifier, path|
       @source = Source.find_by(identifier: identifier)
       @url = Url.find_by(relative_path: "/#{path}")
