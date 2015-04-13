@@ -33,15 +33,7 @@ After the client has registered and submitted POST requests, the data can be vie
 
 The client can view their dashboard by visiting 'http://localhost:9393/sources/identifier', replacing 'identifier' with their own identifier. For Jumpstart Lab, the address would be 'http://localhost:9393/sources/jumpstartlab'.
 
-![img](http://i.imgur.com/UTaSGmb.png "Dashboard")
-
-####Dashboard
-
-After the client has registered and submitted POST requests, the data can be viewed through an HTML interface.
-
-The client can view their dashboard by visiting 'http://localhost:9393/sources/identifier', replacing 'identifier' with their own identifier. For Jumpstart Lab, the address would be 'http://localhost:9393/sources/jumpstartlab'.
-
-![img](http://i.imgur.com/UTaSGmb.png "Dashboard")
+![img](http://i.imgur.com/tYYQOEZ.png "Dashboard")
 
 The dashboard will show the browsers and platforms used to view the page, visited URLs, resolutions and average response time.
 
