@@ -79,6 +79,7 @@ h1 + hr{
   height: 31px;
   background-color: #ffe9b0;
   margin-top: 0px;
+  border-top: none;
 }
 
 h1 span{

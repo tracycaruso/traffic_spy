@@ -3,6 +3,9 @@ require 'byebug'
 
 module TrafficSpy
   class Server < Sinatra::Base
+    register Sinatra::Partial
+    set :partial_template_engine, :erb
+
     get '/' do
       erb :index
     end
@@ -29,6 +32,7 @@ module TrafficSpy
 
 
     get '/sources/:identifier/urls/:path' do |identifier, path|
+      @source = Source.find_by(identifier: identifier)
       @url = Url.find_by(relative_path: "/#{path}")
       @identifier = identifier
 

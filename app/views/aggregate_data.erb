@@ -1,18 +1,6 @@
-<aside class="two columns">
-  <ul>
-    <li><a href="/sources/<%= @source.identifier %>/events">Event Data</a></li>
-    <li><a href="#">Dashboard</a></li>
-  </ul>
-</aside>
-
+<%= partial :'_sidebar' %>
 <div class="ten columns">
-  <header>
-    <div>
-      <h1><%= @source.identifier %></h1>
-      <hr>
-    </div><!--full-->
-  </header>
-
+  <%= partial :'_header' %>
   <main>
     <div>
       <div class="one-half column box">
