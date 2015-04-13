@@ -7,8 +7,9 @@ module TrafficSpy
     has_many :urls, through: :payloads
 
     def urls
-      urls = Payload.pluck(:url_id)
-      urls.flat_map {|url| Url.where(id: url).pluck(:name)}
+      payloads.order('url_id').map { |pl| pl.url.name }
+      # urls = Payload.pluck(:url_id)
+      # urls.flat_map {|url| Url.where(id: url).pluck(:name)}
     end
 
     def ordered_urls
@@ -17,20 +18,24 @@ module TrafficSpy
     end
 
     def url_objects
-      payloads = Payload.all
-      payloads.map{|payload| payload.url}.uniq
+      payloads.order('url_id').map { |pl| pl.url }.uniq
+      # payloads = Payload.all
+      # payloads.map{|payload| payload.url}.uniq
     end
 
     def browsers
-      Payload.pluck(:user_agent_id).map{|user_agent| UserAgent.find(user_agent).browser}
+      payloads.order('user_agent_id').map { |pl| pl.user_agent.browser }.uniq
+      # Payload.pluck(:user_agent_id).map{|user_agent| UserAgent.find(user_agent).browser}
     end
 
     def platforms
-      Payload.pluck(:user_agent_id).map{|user_agent| UserAgent.find(user_agent).platform}
+      payloads.order('user_agent_id').map { |pl| pl.user_agent.platform }.uniq
+      # Payload.pluck(:user_agent_id).map{|user_agent| UserAgent.find(user_agent).platform}
     end
 
     def resolutions
-      Payload.pluck(:resolution_id).map{|resolution| Resolution.find(resolution).dimension}
+      payloads.order('resolution_id').map { |pl| pl.resolution.dimension }.uniq
+      # Payload.pluck(:resolution_id).map{|resolution| Resolution.find(resolution).dimension}
     end
 
     def ordered_url_response_times
@@ -44,8 +49,9 @@ module TrafficSpy
     end
 
     def ordered_events
-      frequency = events.reduce(Hash.new(0)) { |h, v| h[v] += 1; h}
-      events.uniq.sort_by {|v| frequency[v] }.reverse
+      payloads.order('event_name_id').map { |pl| pl.event_name.name }.uniq
+      # frequency = events.reduce(Hash.new(0)) { |h, v| h[v] += 1; h}
+      # events.uniq.sort_by {|v| frequency[v] }.reverse
     end
 
     def events_per_hour_count(event)

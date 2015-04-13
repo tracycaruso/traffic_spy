@@ -49,6 +49,7 @@ class UserViewsSiteDataTest < FeatureTest
     visit '/sources/jumpstartlab'
     #I expect to see the identifier for my site
     assert page.has_content?("jumpstartlab")
+
     within ('ul.urls li:nth-child(1)'){
         assert page.has_content?("http://jumpstartlab.com/blog")
     }
@@ -65,7 +66,7 @@ class UserViewsSiteDataTest < FeatureTest
         assert page.has_content?("Chrome")
     }
 
-    within ('ul.browsers li:nth-child(3)'){
+    within ('ul.browsers li:nth-child(2)'){
         assert page.has_content?("Safari")
     }
 
@@ -73,7 +74,7 @@ class UserViewsSiteDataTest < FeatureTest
         assert page.has_content?("1920x1280")
     }
 
-    within ('ul.screen_resolutions li:nth-child(3)'){
+    within ('ul.screen_resolutions li:nth-child(2)'){
         assert page.has_content?("1280x720")
     }
 

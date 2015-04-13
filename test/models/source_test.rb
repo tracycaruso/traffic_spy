@@ -131,7 +131,7 @@ class SourceTest < Minitest::Test
                                             "63.29.38.210",
                                             source)
 
-       browers = ["Chrome", "Chrome", "Safari"]
+       browers = ["Chrome", "Safari"]
        assert_equal browers, source.browsers
     end
 
@@ -174,7 +174,7 @@ class SourceTest < Minitest::Test
                                               "63.29.38.210",
                                               source)
 
-    platforms = ["Macintosh%3B Intel Mac OS X 10_8_2", "Macintosh%3B Intel Mac OS X 10_8_2", "Windows"]
+    platforms = ["Macintosh%3B Intel Mac OS X 10_8_2", "Windows"]
     assert_equal platforms, source.platforms
   end
 
