@@ -1,16 +1,54 @@
-<h1>Hello Url</h1>
-<h1><%= @identifier %></h1>
+<aside class="two columns">
+  <ul>
+    <li><a href="/sources/<%= @identifier %>/events">Event Data</a></li>
+    <li><a href="/sources/<%= @identifier %>">Dashboard</a></li>
+  </ul>
+</aside>
 
-<h1><%= @url.name %></h1>
+<div class="ten columns">
+  <header>
+    <div>
+      <h1><%= @identifier %> | <span><%= @url.name %></span></h1>
+      <hr>
+    </div>
+  </header>
 
-<h1><%= @url.longest_response_time %></h1>
+  <main>
+    <div>
+      <div class="one-half column box longest_response">
+        <h2> Longest Response Time </h2>
+        <p class="content"><%= @url.longest_response_time %></p>
+      </div><!--half-->
 
-<h1><%= @url.shortest_response_time %></h1>
+      <div class="one-half column box shortest_response">
+        <h2> Shortest Response Time </h2>
+        <p class="content"><%= @url.shortest_response_time %></p>
+      </div><!--half-->
+    </div><!--row-->
 
-<h1><%= @url.average_response_time %></h1>
+    <div>
+      <div class="one-half column box average_response">
+        <h2> Average Response Time </h2>
+        <p class="content"><%= @url.average_response_time %></p>
+      </div><!--half-->
 
-<h1><%= @url.all_request_types %></h1>
+      <div class="one-half column box request_types">
+        <h2> All Request Types </h2>
+        <p class="content"><%= @url.all_request_types.join(", ") %></p>
+      </div><!--half-->
+    </div><!--row-->
 
-<h1><%= @url.most_popular_referrers %></h1>
+    <div>
+      <div class="one-half column box popular_referrers">
+        <h2> Most Popular Referrers </h2>
+        <p class="content"><%= @url.most_popular_referrers.join(", ") %></p>
+      </div><!--half-->
 
-<h1><%= @url.most_popular_user_agents %></h1>
+      <div class="one-half column box popular_browsers">
+        <h2> Most Popular Browsers </h2>
+        <p class="content"><%= @url.most_popular_user_agents.join(", ") %></p>
+      </div><!--half-->
+    </div><!--row-->
+
+  </main>
+</div>

@@ -1,8 +1,27 @@
-<h1>Event Data</h1>
+<aside class="two columns">
+  <ul>
+    <li><a href="/sources/<%= @source.identifier %>/events">Event Data</a></li>
+    <li><a href="/sources/<%= @source.identifier %>">Dashboard</a></li>
+  </ul>
+</aside>
+<div class="ten columns">
+  <header>
+    <div>
+      <h1><%= @source.identifier %></h1>
+      <hr>
+    </div><!--full-->
+  </header>
 
-<h2>Ordered Events</h2>
-<ul class="events">
-  <% @source.ordered_events.each do |event| %>
-  <li><a href="/sources/<%= @source.identifier %>/events/<%= event %>"><%= event  %></a></li>
-  <% end %>
-</ul>
+  <main>
+    <div class="row">
+      <div class="twelve column box">
+        <h2>Ordered Events</h2>
+        <ul class="events">
+          <% @source.ordered_events.each do |event| %>
+          <li><a href="/sources/<%= @source.identifier %>/events/<%= event %>"><%= event  %></a></li>
+          <% end %>
+        </ul>
+      </div><!--column-->
+    </div><!--row-->
+  </main>
+</div>

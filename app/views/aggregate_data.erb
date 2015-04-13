@@ -1,49 +1,70 @@
-<h1><%= @source.identifier %></h1>
+<aside class="two columns">
+  <ul>
+    <li><a href="/sources/<%= @source.identifier %>/events">Event Data</a></li>
+    <li><a href="#">Dashboard</a></li>
+  </ul>
+</aside>
 
-<h2>Visited URLS</h2>
-<ul class="urls">
-  <% @source.ordered_urls.each do |url| %>
-  <li><%= url %></li>
-  <% end %>
-</ul>
+<div class="ten columns">
+  <header>
+    <div>
+      <h1><%= @source.identifier %></h1>
+      <hr>
+    </div><!--full-->
+  </header>
 
-<h2>Average Reponse Times</h2>
-<ul class="average_urls">
-  <% @source.ordered_url_response_times.each do |url| %>
-  <li><%= url %></li>
-  <% end %>
-</ul>
+  <main>
+    <div>
+      <div class="one-half column box">
+        <h2>Browsers</h2>
+        <ul class="image_list browsers">
+          <% @source.browsers.each do |browser| %>
+          <li><img src="../images/<%= browser %>.png"><p><%= browser %></p></li>
+          <% end %>
+        </ul>
+      </div><!--half-->
 
-<h2>Browsers</h2>
-<ul class="browsers">
-  <% @source.browsers.each do |browser| %>
-  <li><%= browser %></li>
-  <% end %>
-</ul>
+      <div class="one-half column box">
+        <h2>Platforms</h2>
+        <ul class="image_list platforms">
+          <% @source.platforms.each do |platform| %>
+          <li><img src="../images/<%= platform %>.png"><p><%= platform %></p></li>
+          <% end %>
+        </ul>
+      </div><!--half-->
+    </div><!--row-->
 
+    <div class="row">
+      <div class="one-half column box">
+        <h2 >Visited Urls</h2>
+        <ul class="visited_urls urls">
+          <% @source.url_objects.each do |url| %>
+          <li><a href="/sources/<%= @source.identifier %>/urls<%= url.relative_path %>"><%= url.name %></a></li>
+          <hr>
+          <% end %>
+        </ul>
+      </div><!--half-->
 
-<h2>Platforms</h2>
-<ul class="platforms">
-  <% @source.platforms.each do |platform| %>
-  <li><%= platform %></li>
-  <% end %>
-</ul>
+      <div class="one-half column box">
+        <h2>Average Response Time</h2>
 
-<h2>Resolutions</h2>
-<ul class="screen_resolutions">
-  <% @source.resolutions.each do |resolution| %>
-  <li><%= resolution %></li>
-  <% end %>
-</ul>
+        <ul class="response_time average_urls">
+          <% @source.ordered_url_response_times.each do |url| %>
+          <li><%= url %></li>
+          <hr>
+          <% end %>
+        </ul>
+      </div><!--half-->
+    </div><!--row-->
 
-
-<h2>URLs:</h2>
-<ul class="single_url">
-
-<% @source.url_objects.each do |url| %>
-<li><a href="/sources/<%= @source.identifier %>/urls<%= url.relative_path %>"><%= url.name %></a></li>
-
-<% end %>
-</ul>
-
-<h3><a href="/sources/<%= @source.identifier %>/events">Event data</a></h3>
+    <div class="row">
+      <div class="twelve column box">
+        <h2>Resolutions</h2>
+        <ul class="screen_resolutions large_image_list">
+          <% @source.resolutions.each do |resolution| %>
+          <li><img src="../images/<%= resolution %>.png"><p><%= resolution %></p></li>
+          <% end %>
+      </div><!--full-->
+    </div><!--row-->
+  </main>
+</div>

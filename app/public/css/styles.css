@@ -1,0 +1,146 @@
+aside{
+  background:#6bbde8;
+  min-height: 1300px;
+}
+
+ul{
+  list-style:none;
+}
+
+aside li{
+  text-align:center;
+  list-style:none;
+}
+
+aside li:nth-child(1)::before{
+    display:block;
+    background-image: url(../images/events.png);
+    background-repeat:no-repeat;
+    background-size: 100%;
+    content:"";
+    width: 88px;
+    height: 108px;
+    margin: 40px auto 10px;
+}
+
+aside li.active{
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 50px;
+  margin-left: 35px;
+  margin-right: -10px;
+  padding: 10px 15px 10px 10px;
+}
+
+aside li.active a{
+  color:#6a6c6d;
+}
+
+aside li:nth-child(2)::before{
+    display: block;
+    background-image: url(../images/dashboard.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    content: "";
+    width: 88px;
+    height: 78px;
+    margin: 10px auto 10px;
+}
+
+aside a{
+  color:#fff;
+}
+
+
+
+
+h1{
+  color:#6bbde8;
+  font-weight:light;
+  text-transform: capitalize;
+}
+
+h1::before{
+
+  display: inline-block;
+  background-image: url(../images/dashboard-icon.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: "";
+  width: 51px;
+  height: 55px;
+  margin-top: 15px;
+  margin-right: 10px;
+  margin-bottom:-10px;
+
+}
+
+h1 + hr{
+  height: 31px;
+  background-color: #ffe9b0;
+  margin-top: 0px;
+}
+
+h1 span{
+  font-size:.50em;
+  color: #bababa;
+}
+
+h2{
+  background:#90d0c3;
+  color:#fff;
+  font-size:1.5em;
+  padding:4px 10px;
+}
+
+.box{
+  border:1px solid #bababa;
+  margin-bottom:10px;
+}
+
+ul.image_list{
+  list-style:none
+}
+
+ul.image_list li{
+  display:inline-block;
+  float:left;
+  width:20%;
+  text-align:center;
+  font-size:12px;
+
+}
+
+ul.image_list li p{
+  padding-top:10px;
+}
+
+ul.image_list li img {
+  width: 80%;
+  margin: 0 auto;
+  padding:0 4%;
+}
+
+  ul.large_image_list li{
+    display:inline-block;
+    float:left;
+    width:25%;
+    text-align:center;
+  }
+
+  ul.large_image_list li img {
+    width: 90%;
+    margin: 0 auto;
+    padding:0px 2.5%;
+  }
+ul, p.content{
+  padding-left:20px
+}
+
+.response_time span{
+  font-size:2em;
+  margin-right:20px;
+}
+.response_time hr, .visited_urls hr{
+  margin-right: 20px;
+}

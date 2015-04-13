@@ -1,99 +1,70 @@
 require './test/test_helper'
-require './test/create_sources_and_payloads'
 
 class UserViewsSiteDataTest < FeatureTest
-  include CreateSourcesAndPayloads
-
   def test_user_views_identifier
-    source = CreateSourcesAndPayloads.create_source("jumpstartlab", "http://www.jumpstartlab.com")
-    CreateSourcesAndPayloads.create_payload("http://jumpstartlab.com/blog",
-                                            "2014-02-16 21:38:28 -0700",
-                                            10,
-                                            "http://jumpstartlab.com",
-                                            "GET",
-                                            [],
-                                            "socialLogin",
-                                            "Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
-                                            "1920",
-                                            "1280",
-                                            "63.29.38.211",
-                                            source)
-    CreateSourcesAndPayloads.create_payload("http://jumpstartlab.com/blog",
-                                            "2014-03-16 21:38:30 -0700",
-                                            20,
-                                            "http://jumpstartlab.com",
-                                            "GET",
-                                            [],
-                                            "socialLogin",
-                                            "Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
-                                            "1920",
-                                            "1280",
-                                            "63.29.38.211",
-                                            source)
-    CreateSourcesAndPayloads.create_payload("http://jumpstartlab.com/courses",
-                                            "2015-03-16 21:38:00 -0800",
-                                            37,
-                                            "http://jumpstartlab.com",
-                                            "GET",
-                                            [],
-                                            "socialLogin",
-                                            "Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Safari/24.0.1309.0 Safari/537.17",
-                                            "1280",
-                                            "720",
-                                            "63.29.38.210",
-                                            source)
+    within ('header'){
+      visit '/sources/jumpstartlab'
+      assert page.has_content?("jumpstartlab")
+    }
+  end
 
-
-    #as a client
-    #When I visit the page for my site
+  def test_user_can_use_side_nav
     visit '/sources/jumpstartlab'
-    #I expect to see the identifier for my site
-    assert page.has_content?("jumpstartlab")
+    within ('aside'){
+        assert page.has_content?("Event Data")
+        assert page.has_content?("Dashboard")
+        click_link_or_button("Event Data")
+    }
+    assert_equal '/sources/jumpstartlab/events', current_path
+  end
 
-    within ('ul.urls li:nth-child(1)'){
-        assert page.has_content?("http://jumpstartlab.com/blog")
-    }
-    within ('ul.urls li:nth-child(2)'){
-        assert page.has_content?("http://jumpstartlab.com/courses")
-    }
-    within ('ul.average_urls li:nth-child(1)'){
-        assert page.has_content?("http://jumpstartlab.com/courses: 37")
-    }
-    within ('ul.average_urls li:nth-child(2)'){
-        assert page.has_content?("http://jumpstartlab.com/blog: 15")
-    }
-    within ('ul.browsers li:nth-child(1)'){
+  def test_user_views_browser_data
+    visit '/sources/jumpstartlab'
+    within ('.browsers'){
         assert page.has_content?("Chrome")
-    }
-
-    within ('ul.browsers li:nth-child(2)'){
         assert page.has_content?("Safari")
     }
+  end
 
-    within ('ul.screen_resolutions li:nth-child(1)'){
-        assert page.has_content?("1920x1280")
+  def test_user_views_platform_data
+    visit '/sources/jumpstartlab'
+    within ('.platforms'){
+        assert page.has_content?("Macintosh%3B Intel Mac OS X 10_8_2")
     }
+  end
 
-    within ('ul.screen_resolutions li:nth-child(2)'){
+  def test_user_views_visited_urls
+    visit '/sources/jumpstartlab'
+    within ('.urls'){
+        assert page.has_content?("http://jumpstartlab.com/blog")
+        click_link_or_button("http://jumpstartlab.com/blog")
+    }
+    assert_equal '/sources/jumpstartlab/urls/blog', current_path
+
+    visit '/sources/jumpstartlab'
+    within ('.urls'){
+        assert page.has_content?("http://jumpstartlab.com/courses")
+        click_link_or_button("http://jumpstartlab.com/courses")
+    }
+    assert_equal '/sources/jumpstartlab/urls/courses', current_path
+  end
+
+
+  def test_user_views_average_response_time_data
+    visit '/sources/jumpstartlab'
+    within ('.response_time'){
+        assert page.has_content?("http://jumpstartlab.com/home: 37")
+        assert page.has_content?("http://jumpstartlab.com/courses: 37")
+    }
+  end
+
+  def test_user_views_resolution_data
+    visit '/sources/jumpstartlab'
+    within ('.screen_resolutions'){
+        assert page.has_content?("1920x1280")
         assert page.has_content?("1280x720")
     }
-
-
-    within('.single_url'){
-      click_link_or_button("http://jumpstartlab.com/blog")}
-      assert_equal '/sources/jumpstartlab/urls/blog', current_path
-      assert page.has_content?("jumpstartlab")
-      assert page.has_content?("20")
-      assert page.has_content?("15")
-      assert page.has_content?("10")
-      assert page.has_content?("Chrome")
-
-
-    visit '/sources/jumpstartlab/urls/peanuts'
-    within('h1'){
-      assert page.has_content?("Message that the url has not been requested")
-    }
-
   end
+
 
 end
